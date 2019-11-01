@@ -15,19 +15,22 @@ RSpec.describe Post, type: :model do
 
   context 'sopes' do
     it 'active_posts' do
-      Post.create(title: 'Title', body: 'Some text', active: true)
+      user = User.create(email: 'some@gmail.com', password: 'password')
+      user.posts.create(title: 'Title', body: 'Some text', active: true)
       expect(Post.active_posts.size).to eq(1)
     end
 
     it 'inactive_posts' do
-      Post.create(title: 'Title', body: 'Some text', active: false)
+      user = User.create(email: 'some@gmail.com', password: 'password')
+      user.posts.create(title: 'Title', body: 'Some text', active: false)
       expect(Post.inactive_posts.size).to eq(1)
     end
   end
 
   context 'callbacks' do
     it 'default active' do
-      Post.create(title: 'Title', body: 'Some text')
+      user = User.create(email: 'some@gmail.com', password: 'password')
+      user.posts.create(title: 'Title', body: 'Some text')
       expect(Post.active_posts.size).to eq(1)
     end
   end
