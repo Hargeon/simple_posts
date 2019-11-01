@@ -1,11 +1,15 @@
 <% @posts.each do |post| %>
-  <h1>
-    <%= link_to  post.title, post_path(post) %>
-  </h1>
+  <div class="jumbotron">
+    <h1>
+      <%= link_to  post.title, post_path(post) %>
+    </h1>
 
-  <h3>
-    <%= post.body %>
-  </h3>
+    <p class="lead">
+      <%= post.body %>
+    </p>
+
+    <h6><%= post.user.email %></h6>
+</div>
 <% end %>
 
-<%= link_to  "New", new_post_path %>
+<%= render  'users/index' %>

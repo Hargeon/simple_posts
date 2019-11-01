@@ -1,16 +1,23 @@
+<% if @post.errors.any? %>
+  <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_for @post do |f| %>
   <p>
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field(:title, { class: 'form-control' } ) %>
   </p>
 
   <p>
     <%= f.label :body %><br>
-    <%= f.text_area :body %>
+    <%= f.text_area(:body, { class: 'form-control' } ) %>
   </p>
 
   <p>
-    <%= f.submit %>
+    <%= f.submit( { class: 'btn btn-success' } ) %>
   </p>
 <% end %>
 
