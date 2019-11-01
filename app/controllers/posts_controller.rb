@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   def index
-    @posts = Post.active_posts
+    @pagy, @posts = pagy(Post.active_posts, items: 7)
   end
 
   def new
