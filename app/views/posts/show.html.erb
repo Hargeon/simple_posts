@@ -1,4 +1,4 @@
 <h1><%= @post.title %></h1>
 <h4><%= @post.body %></h4>
 <%= @post.user.email %><br>
-<%= link_to 'Back', posts_path, class:"btn btn-primary" %>
+<%= link_to 'Back', posts_path(page: params[:page]), class:"btn btn-primary" %>
