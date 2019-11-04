@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @query = FindLikes.new(@post.id, current_user.id)
+    @query = FindLikes.new(@post.id, current_user.id) 
   end
 
   private
