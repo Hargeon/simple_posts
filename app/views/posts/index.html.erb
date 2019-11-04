@@ -1,7 +1,7 @@
 <% @posts.each do |post| %>
   <div class="jumbotron">
     <h1>
-      <%= link_to  post.title, post_path(post) %>
+      <%= link_to  post.title, post_path(post, page: params[:page]) %>
     </h1>
 
     <p class="lead">
@@ -9,9 +9,14 @@
     </p>
 
     <h6><%= post.user.email %></h6>
+    <% unless Like.where(post_id: post.id, user_id: post.user.id).count > 0 %>
+      <%= link_to  "Like it", likes_path(user_id: post.user.id, post_id: post.id, page: params[:page]), method: :post , class: "btn btn-primary"%>
+    <% else %>
+      <% id = Like.where(post_id: post.id, user_id: post.user.id).first.id %>
+      <%= link_to  "Like it", like_path(id: id, page: params[:page]), method: :delete, class: "btn btn-danger" %>
+    <% end %>
+    <%= Like.where(post_id: post.id).count %> Likes
 </div>
 <% end %>
-<% if @posts.size > 7 %>
-  <%== pagy_bootstrap_nav(@pagy)  %>
-<% end %>
-<%= render  'users/index' %>
+
+<%== pagy_bootstrap_nav(@pagy)  %>

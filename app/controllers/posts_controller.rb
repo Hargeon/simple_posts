@@ -13,12 +13,13 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path(@post)
     else
-      render 'new'
+      render new_post_path
     end
   end
 
   def show
     @post = Post.find(params[:id])
+    @query = FindLikes.new(@post.id, current_user.id)
   end
 
   private
