@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   def index
-    @posts = Post.active_posts
+    @pagy, @posts = pagy(Post.active_posts, items: 7)
   end
 
   def new
@@ -13,12 +13,13 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to posts_path(@post)
     else
-      render 'new'
+      render new_post_path
     end
   end
 
   def show
     @post = Post.find(params[:id])
+    @query = FindLikes.new(@post.id, current_user.id)
   end
 
   private

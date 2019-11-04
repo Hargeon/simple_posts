@@ -10,6 +10,8 @@ RSpec.describe PostsController, type: :controller do
 
   context 'GET new' do
     it 'success response' do
+      user = User.create(email: 'some@gmail.com', password: 'password')
+      sign_in user
       get :new
       expect(response.status).to eq(200)
     end
@@ -17,6 +19,8 @@ RSpec.describe PostsController, type: :controller do
 
   context 'POST new' do
     it 'success post' do
+      user = User.create(email: 'some@gmail.com', password: 'password')
+      sign_in user
       post :create, params: { post: { title: 'Title', body: 'Some Text' } }
       expect(Post.all.size).to eq(1)
     end
@@ -24,7 +28,9 @@ RSpec.describe PostsController, type: :controller do
 
   context 'GET show' do
     it 'success response' do
-      post = Post.create(title: 'Title', body: 'Some text')
+      user = User.create(email: 'some@gmail.com', password: 'password')
+      sign_in user
+      post = user.posts.create(title: 'Title', body: 'Some text')
       get :show, params: { id: post.id }
       expect(response.status).to eq(200)
     end
