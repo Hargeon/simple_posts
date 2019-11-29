@@ -8,12 +8,12 @@ class LoginSignInServise
 
   def jwt
     data = { id: @user.id }
-    jwt = JWT.encode(data, Rails.application.secrets.secret_key_base, 'HS256')
+    JWT.encode(data, Rails.application.secrets.secret_key_base, 'HS256')
   end
 
   def find_user
     @user = User.find_by(email: @email)
-    @user.nil? ? false : true
+    !@user.nil?
   end
 
   def valid_password
