@@ -4,8 +4,8 @@ module Api
   module V1
     class LoginController < BaseController
       def create
-        api_object = LoginHelper::ApiObject.new(params[:email], params[:password])
-        if api_object.find_user
+        api_object = LoginSignInServise.new(params[:email], params[:password])
+        if api_object.valid_password
           success_responce(api_object.jwt)
         else
           unsuccess_responce
