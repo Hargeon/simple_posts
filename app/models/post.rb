@@ -1,9 +1,10 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :likes
+  has_many :likes, dependent: :destroy
+  has_many :comments, as: :commentable
 
   validates :title, presence: true
-  validates :body, presence: true
+  validates :body, body: true
 
   scope :active_posts, -> { where(active: true) }
   scope :inactive_posts, -> { where(active: false) }
@@ -13,8 +14,6 @@ class Post < ApplicationRecord
   private
 
   def default_active
-    if active.nil?
-      self.active = true
-    end
+    self.active = true if active.nil?
   end
 end

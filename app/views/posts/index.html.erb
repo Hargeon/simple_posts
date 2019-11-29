@@ -9,11 +9,13 @@
     </p>
 
     <h6><%= post.user.email %></h6>
-    <% unless Like.where(post_id: post.id, user_id: post.user.id).count > 0 %>
-      <%= link_to  "Like it", likes_path(user_id: post.user.id, post_id: post.id, page: params[:page]), method: :post , class: "btn btn-primary"%>
-    <% else %>
-      <% id = Like.where(post_id: post.id, user_id: post.user.id).first.id %>
-      <%= link_to  "Like it", like_path(id: id, page: params[:page]), method: :delete, class: "btn btn-danger" %>
+    <% if user_signed_in? %>
+      <% unless Like.where(post_id: post.id, user_id: post.user.id).count > 0 %>
+        <%= link_to  "Like it", likes_path(user_id: post.user.id, post_id: post.id, page: params[:page]), method: :post , class: "btn btn-primary"%>
+      <% else %>
+        <% id = Like.where(post_id: post.id, user_id: post.user.id).first.id %>
+        <%= link_to  "Like it", like_path(id: id, page: params[:page]), method: :delete, class: "btn btn-danger" %>
+      <% end %>
     <% end %>
     <%= Like.where(post_id: post.id).count %> Likes
 </div>

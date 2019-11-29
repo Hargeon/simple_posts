@@ -1,0 +1,6 @@
+<p>
+  <%= link_to  "En", locale: :en %>|
+  <%= link_to  "Ru", locale: :ru %>
+</p>
+<h1><%= t(:greetings, name: current_user.name) %></h1>
+<h1><%= t(:age) %>: <%= current_user.age %></h1>

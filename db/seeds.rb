@@ -6,8 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.first
-100.times do
-  user.posts.create(title: Faker::Book.title,
-                    body: Faker::Books::Lovecraft.paragraph)
+
+20.times do
+  user = User.create(name: Faker::Name.name,
+                    email: Faker::Internet.unique.email,
+                    password: 01234567,
+                    gender: 'male',
+                    created_at: Faker::Date.in_date_period,
+                    age: Faker::Number.between(from: 1, to: 100))
 end

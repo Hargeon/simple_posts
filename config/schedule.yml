@@ -1,0 +1,4 @@
+delete_user_worker:
+  cron: '0 0 * * 1'
+  class: 'DeleteUsersWithoutPets'
+  queue: 'delete_users_without_pets'

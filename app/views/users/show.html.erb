@@ -1,2 +1,8 @@
-<h1><%= @user.email %></h1>
-<%= link_to  "Back", posts_path, class: "btn btn-primary" %>
+<% if @user.avatar.attached? %>
+  <%= image_tag @user.avatar.variant(resize_to_limit: [400, 400]) %>
+<% end %>
+<h2><%= @user.email %></h2>
+<h2><%= @user.name %></h2>
+<h2>Gender: <%= @user.gender %></h2>
+<h2>Age: <%= @user.age %></h2>
+<%= link_to  "Back", users_path, class: "btn btn-primary" %>

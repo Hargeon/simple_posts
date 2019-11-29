@@ -1,0 +1,7 @@
+{
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveTimeout": 5000,
+  "ruby.rubocop.executePath": "/home/linuxbrew/.linuxbrew/bin/",
+  "ruby.rubocop.suppressRubocopWarnings": true,
+  "ruby.rubocop.onSave": true
+}
