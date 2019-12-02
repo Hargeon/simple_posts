@@ -17,10 +17,6 @@ class LoginServise
   end
 
   def valid_password?
-    if find_user
-      @user.valid_password?(@password)
-    else
-      false
-    end
+    find_user ? @user.valid_password?(@password) : false
   end
 end
