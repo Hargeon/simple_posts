@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LoginSignInServise
+class LoginServise
   def initialize(email, password)
     @email = email
     @password = password
@@ -16,9 +16,9 @@ class LoginSignInServise
     !@user.nil?
   end
 
-  def valid_password
+  def valid_password?
     if find_user
-      @user.valid_password?(@password) ? true : false
+      @user.valid_password?(@password)
     else
       false
     end
